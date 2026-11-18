@@ -357,7 +357,7 @@ Toutes les fonctions de `RenderCore` sont annotées avec la macro `RT_FUNC` :
 Pour chaque pixel $(x, y)$ et chacun des `spp` échantillons, un décalage aléatoire $\xi \in [0, 1)^2$ est ajouté avant la projection sur le viewport :
 
 $$
-u = \frac{x + \xi_1}{W - 1}, \qquad v = \frac{H - 1 - (y + \xi_2)}{H - 1}, \qquad \vec{d} = \operatorname{normalize}\big(O + u\,\vec{h} + v\,\vec{v} - P_{\text{cam}}\big)
+u = \frac{x + \xi_1}{W - 1}, \qquad v = \frac{H - 1 - (y + \xi_2)}{H - 1}, \qquad \vec{d} = \mathrm{normalize}\big(O + u\,\vec{h} + v\,\vec{v} - P_{\text{cam}}\big)
 $$
 
 ### 2. Intersections
@@ -370,7 +370,7 @@ $$
 Si `bump_strength ≠ 0`, le gradient du champ de hauteur de la texture est estimé par **différences finies centrées** sur les trois axes, puis soustrait de la normale géométrique :
 
 $$
-\vec{n}' = \operatorname{normalize}\big(\vec{n} - k \cdot \nabla h(P)\big)
+\vec{n}' = \mathrm{normalize}\big(\vec{n} - k \cdot \nabla h(P)\big)
 $$
 
 ### 4. Éclairage direct
@@ -430,7 +430,7 @@ Les arêtes géométriques (changement de normale) et les frontières de texture
 La radiance HDR est multipliée par une exposition de 0.75, puis compressée par la courbe filmique **ACES** :
 
 $$
-f(x) = \operatorname{clamp}\left(\frac{x(2.51x + 0.03)}{x(2.43x + 0.59) + 0.14},\ 0,\ 1\right)
+f(x) = \mathrm{clamp}\left(\frac{x(2.51x + 0.03)}{x(2.43x + 0.59) + 0.14},\ 0,\ 1\right)
 $$
 
 L'image est enfin écrite au format **PPM P3** (texte brut, aucune dépendance).
