@@ -1,0 +1,4 @@
+*.txt
+*.sh
+*.ppm
+out/
